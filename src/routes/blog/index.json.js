@@ -6,7 +6,7 @@ const ObjectID = require('mongodb').ObjectID;
 
 export async function get(req, res) {
 	const id = "5eb3d956baeda6d63701002a";
-	User.find( { "name": "b" }, function(err, result) {
+	User.findOne( { "_id": id }, function(err, result) {
 		if(err){
 			res.end(JSON.stringify({"message": "user.js not found"}));
 		}

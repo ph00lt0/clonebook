@@ -3,8 +3,8 @@ const schema = mongoose.Schema;
 
 
 let postSchema = schema({
-    title: {type: String, required: true},
-    body: {type: String, required: true}
+    date: {type: Date, required: true, default: Date.now},
+    message: {type: String, required: true}
 })
 
 let friendSchema = schema({
