@@ -33,7 +33,7 @@ let userSchema = schema({
     email: {
         type: String,
         required: true
-    }
+    },
     password:{
         type: String,
         required: true
@@ -48,7 +48,8 @@ let userSchema = schema({
         required: true
     },
     posts: [postSchema],
-    friends:[friendSchema],
+    friends:[friendSchema]
 });
 
-module.exports=mongoose.model("User", UserSchema);
+var User = mongoose.model("User", userSchema);
+module.exports = User;

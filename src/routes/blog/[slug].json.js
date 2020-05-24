@@ -1,6 +1,5 @@
 let mongoose = require("mongoose");
 const formidable = require('formidable');
-const User = require("../models/user");
 
 export async function get(req, res, next) {
     const {slug} = req.params;

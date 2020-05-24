@@ -1,4 +1,5 @@
-const User = require("../../models/user");
+var path = require('path');
+const User = require(path.join("../../../", "src", "models", "user.js"));
 const formidable = require('formidable');
 const ObjectID = require('mongodb').ObjectID;
 
@@ -12,7 +13,7 @@ export async function get(req, res) {
 		res.writeHead(200, {
 			'Content-Type': 'application/json'
 		});
-		res.end(result);
+		res.end(JSON.stringify(result));
 	});
 }
 
