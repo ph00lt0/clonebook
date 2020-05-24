@@ -1,9 +1,8 @@
-import posts from './_posts.js';
-import {init} from "@clonebook/mongo";
+let mongoose = require("mongoose");
+const formidable = require('formidable');
+const User = require("../models/user");
 
 export async function get(req, res, next) {
-    // the `slug` parameter is available because
-    // this file is called [slug].json.js
     const {slug} = req.params;
     const {db} = await init();
     const user = await db.collection('users').findOne({slug});
@@ -23,3 +22,4 @@ export async function get(req, res, next) {
         }));
     }
 }
+

@@ -61,7 +61,7 @@ self.addEventListener('fetch', event => {
 	if (event.request.cache === 'only-if-cached') return;
 
 	// for everything else, try the network first, falling back to
-	// cache if the user is offline. (If the pages never change, you
+	// cache if the user.js is offline. (If the pages never change, you
 	// might prefer a cache-first approach to a network-first one.)
 	event.respondWith(
 		caches

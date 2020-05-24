@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "compression": "^1.7.1",
+    "formidable": "^1.2.2",
     "mongodb": "^3.5.7",
+    "mongoose": "^5.9.15",
     "polka": "next",
     "sirv": "^0.4.0"
   },
