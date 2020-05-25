@@ -1,52 +1,56 @@
-<script>
-	export function preload(page, session) {
-		return {path: page.path};
+<script context="module">
+	export function preload({ params, query }) {
+		return this.fetch(`index.json`).then(r => r.json()).then(user => {
+			return { user };
+		});
 	}
 </script>
 
-<svelte:head>
-	<title>Sapper project template</title>
-</svelte:head>
+<script>
+	import Post from '../components/Post.svelte';
+	import { setContext } from 'svelte'
+	import { writable } from 'svelte/store'
 
-<h1>Great success!</h1>
+	export let user;
+	const user$ = writable(user);
+	$: $user$ = user;
+	setContext('user', user$);
 
-<figure>
-	<img alt='Success Kid' src='successkid.jpg'>
-	<figcaption>Have fun with Sapper!</figcaption>
-</figure>
-
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
-
-<style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
-
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-
-	figure {
-		margin: 0 0 1em 0;
-	}
-
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
-
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
+	let message = null;
+	async function addPost() {
+		const response = await fetch("/index.json", {
+			method: 'POST',
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify({message}),
+		});
+		if (response.ok) {
+			const result = await response.json();
+			console.log(result)
 		}
 	}
+</script>
+
+<style>
+	ul {
+		margin: 0 0 1em 0;
+		line-height: 1.5;
+	}
 </style>
+
+<svelte:head>
+	<title>Clonebook</title>
+</svelte:head>
+
+<form on:submit|preventDefault={addPost}>
+	<textarea bind:value={message}></textarea>
+	<button>Submit</button>
+</form>
+
+<h2>Recent posts</h2>
+
+<ul>
+
+	{#each user.posts as post}
+		<Post id={post.id} />
+	{/each}
+</ul>
