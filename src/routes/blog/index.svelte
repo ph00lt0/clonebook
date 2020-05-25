@@ -8,6 +8,18 @@
 
 <script>
 	export let user;
+	let message = null;
+	async function addPost() {
+		const response = await fetch("/blog.json", {
+			method: 'POST',
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify({message}),
+		});
+		if (response.ok) {
+			const result = await response.json();
+			console.log(result)
+		}
+	}
 </script>
 
 <style>
@@ -21,7 +33,12 @@
 	<title>Profile</title>
 </svelte:head>
 
-<h1>Recent posts</h1>
+<form on:submit|preventDefault={addPost}>
+	<textarea bind:value={message}></textarea>
+	<button>Submit</button>
+</form>
+
+<h2>Recent posts</h2>
 
 <ul>
 

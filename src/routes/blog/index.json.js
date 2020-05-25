@@ -18,11 +18,8 @@ export async function get(req, res) {
 }
 
 export async function post(req, res, next) {
-	const {slug} = req.params;
-	const post = req.body;
 	const form = formidable({multiples: true});
-
-	form.parse(req, (err, fields, files) => {
+	await form.parse(req, (err, fields, files) => {
 		const userId = "5eb3d956baeda6d63701002a";
 		const message = fields.message;
 		const postID = new ObjectID();
@@ -30,7 +27,7 @@ export async function post(req, res, next) {
 				_id: new ObjectID(userId)
 			}, {
 				$push: {posts: {_id: postID, message}}
-			}, (err, result) => err ? res.json(err) : res.json(postID)
+			}, (err, result) => err ? res.end(JSON.stringify(err)) : res.end(JSON.stringify(postID))
 		);
 	});
 }
