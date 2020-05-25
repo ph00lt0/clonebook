@@ -8,13 +8,7 @@
 
 <script>
 	import Post from '../components/Post.svelte';
-	import { setContext } from 'svelte'
-	import { writable } from 'svelte/store'
-
 	export let user;
-	const user$ = writable(user);
-	$: $user$ = user;
-	setContext('user', user$);
 
 	let message = null;
 	async function addPost() {
@@ -25,7 +19,7 @@
 		});
 		if (response.ok) {
 			const result = await response.json();
-			console.log(result)
+			console.log(result);
 		}
 	}
 </script>
@@ -51,6 +45,6 @@
 <ul>
 
 	{#each user.posts as post}
-		<Post id={post.id} />
+		<Post post={post} />
 	{/each}
 </ul>
