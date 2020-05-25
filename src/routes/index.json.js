@@ -1,4 +1,3 @@
-const path = require('path');
 import User from '@clonebook/models/user.js';
 const formidable = require('formidable');
 const ObjectID = require('mongodb').ObjectID;

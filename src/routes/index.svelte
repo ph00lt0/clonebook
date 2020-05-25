@@ -8,9 +8,12 @@
 
 <script>
 	import Post from '../components/Post.svelte';
+	import { stores } from '@sapper/app';
+	const { preloading, page, session } = stores();
 	export let user;
 
 	let message = null;
+
 	async function addPost() {
 		const response = await fetch("/index.json", {
 			method: 'POST',
