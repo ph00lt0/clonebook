@@ -1,5 +1,6 @@
 <script>
 	import Nav from '../components/Nav.svelte';
+	import Aside from '../components/Aside.svelte';
 
 	export let segment;
 </script>
@@ -7,16 +8,36 @@
 <style>
 	main {
 		position: relative;
+		margin: 1em;
+	}
+	section {
 		max-width: 56em;
+		width: 100%;
 		background-color: white;
-		padding: 2em;
 		margin: 0 auto;
 		box-sizing: border-box;
+	}
+	aside {
+		display: none;
+	}
+	@media screen and (min-width: 700px) {
+		main {
+			display: grid;
+			grid-template-columns: 4fr 1fr;
+		}
+		aside {
+			display: block;
+		}
 	}
 </style>
 
 <Nav {segment}/>
 
 <main>
-	<slot></slot>
+	<section>
+		<slot></slot>
+	</section>
+	<aside>
+		<Aside/>
+	</aside>
 </main>

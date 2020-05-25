@@ -24,27 +24,27 @@
 	}
 </script>
 
-<style>
-	ul {
-		margin: 0 0 1em 0;
-		line-height: 1.5;
-	}
-</style>
-
 <svelte:head>
 	<title>Clonebook</title>
 </svelte:head>
+
+<h2>Posts</h2>
 
 <form on:submit|preventDefault={addPost}>
 	<textarea bind:value={message}></textarea>
 	<button>Submit</button>
 </form>
 
-<h2>Recent posts</h2>
+{#each user.posts as post}
+	<Post post={post} user="{user}"/>
+{/each}
 
-<ul>
 
-	{#each user.posts as post}
-		<Post post={post} />
-	{/each}
-</ul>
+<style>
+	form {
+		padding: 1em;
+		-webkit-box-shadow: 14px 14px 31px 21px rgba(237,237,237,1);
+		-moz-box-shadow: 14px 14px 31px 21px rgba(237,237,237,1);
+		box-shadow: 14px 14px 31px 21px rgba(237,237,237,1);
+	}
+</style>
