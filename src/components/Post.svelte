@@ -4,9 +4,10 @@
     export let post;
     export let user;
 
+    //todo this function is not executing
     async function deletePost() {
         id = post.id;
-        const response = await fetch("post/delete.json", {
+        const response = await fetch("/api/post/delete.json", {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(id),
@@ -24,10 +25,10 @@
 
 <article class="post">
     <UserCard user="{user}"/>
-    <button class="delete" on:submit|preventDefault={deletePost}>🗑</button>
+    <button class="delete" on:submit={deletePost}>🗑</button>
     <p class="date">{post.date}</p>
     <p>{post.message}</p>
-    <button class="like" on:submit|preventDefault={likePost}>👍</button>
+    <button class="like" on:submit={likePost}>👍</button>
 </article>
 
 <style>

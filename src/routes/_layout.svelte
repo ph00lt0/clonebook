@@ -11,7 +11,7 @@
 		margin: 1em;
 	}
 	section {
-		max-width: 56em;
+		mzax-width: 56em;
 		width: 100%;
 		background-color: white;
 		margin: 0 auto;
@@ -23,6 +23,7 @@
 	@media screen and (min-width: 700px) {
 		main {
 			display: grid;
+			grid-gap: 2em;
 			grid-template-columns: 4fr 1fr;
 		}
 		aside {
