@@ -18,7 +18,7 @@
         });
         if (response.ok) {
             const result = await response.json();
-            console.log(result);
+            localStorage.jwt = result.token;
         }
     }
 </script>
