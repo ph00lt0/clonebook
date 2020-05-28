@@ -3,7 +3,7 @@ import sirv from 'sirv';
 import express from 'express'
 import compression from 'compression';
 import * as sapper from '@sapper/server';
-import * as mongo from '@clonebook/mongo';
+import isAuthenticated from '@clonebook/middleware.js';
 
 const app = express();
 
@@ -12,6 +12,7 @@ const dev = NODE_ENV === 'development';
 
 app.use(express.urlencoded());
 app.use(express.json());
+app.use(isAuthenticated);
 
 // polka() // You can also use Express
 	app.use(

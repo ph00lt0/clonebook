@@ -9,9 +9,6 @@ export async function get(req, res) {
 		if(err){
 			res.end(JSON.stringify({"message": "user.js not found"}));
 		}
-		res.writeHead(200, {
-			'Content-Type': 'application/json'
-		});
 		res.end(JSON.stringify(result));
 	});
 }
