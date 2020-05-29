@@ -11,7 +11,7 @@ export function post(req, res, next) {
             if(err){
                 return res.status(401).end(JSON.stringify({"message": "Incorrect credentials"}));
             }
-            if(req.body['password'] !== result.password) {
+            if(req.body['password'] !== result['password']) {
                 return res.status(401).end(JSON.stringify({"message": "Incorrect credentials"}));
             }
             const token = jwt.sign({id: result._id, username: result.username}, process.env.JWT_SIGNATURE);

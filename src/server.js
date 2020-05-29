@@ -3,6 +3,7 @@ import sirv from 'sirv';
 import express from 'express'
 import compression from 'compression';
 import * as sapper from '@sapper/server';
+import * as mongo from '@clonebook/mongo';
 import isAuthenticated from '@clonebook/middleware.js';
 
 const app = express();

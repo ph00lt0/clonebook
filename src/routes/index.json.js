@@ -4,6 +4,7 @@ const ObjectID = require('mongodb').ObjectID;
 
 
 export async function get(req, res) {
+	console.log('x')
 	const id = "5eb3d956baeda6d63701002a";
 	User.findOne( { "_id": id }, function(err, result) {
 		if(err){
