@@ -6,7 +6,6 @@
     export let user;
 
     async function deletePost() {
-        console.log('d');
         const postID = post.id;
         const response = await fetch("/api/post/delete", {
             method: 'POST',

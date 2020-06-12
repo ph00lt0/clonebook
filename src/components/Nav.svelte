@@ -1,5 +1,6 @@
 <script>
 	export let segment;
+	import Search from '../components/Search.svelte';
 </script>
 
 <style>
@@ -67,6 +68,8 @@
 	<ul>
 		<li><h2>Clonebook</h2></li>
 		<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>Home</a></li>
+
+		<li><Search {segment}/></li>
 
 		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
 		     the blog data when we hover over the link or tap it on a touchscreen -->
