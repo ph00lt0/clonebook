@@ -1,7 +1,7 @@
 <script context="module">
 	export function preload({ params, query }) {
 		return this.fetch(`index.json`, {
-			headers: {authenticate: 'token ' + localStorage.jwt}
+			headers: {Authorization: `token: "${localStorage.jwt}"`}
 		}).then(r => r.json()).then(user => {
 			return { user };
 		});
