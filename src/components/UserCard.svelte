@@ -4,7 +4,7 @@
 
 <div>
     <img src="https://www.w3schools.com/howto/img_avatar.png">
-    <h4>{user.name}</h4>
+    <h4>{user.firstName} {user.lastName}</h4>
 </div>
 
 <style>

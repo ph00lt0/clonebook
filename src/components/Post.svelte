@@ -1,16 +1,20 @@
 <script>
     import UserCard from '../components/UserCard.svelte';
+    export let segment;
 
     export let post;
     export let user;
 
-    //todo this function is not executing
     async function deletePost() {
-        id = post.id;
-        const response = await fetch("/api/post/delete.json", {
+        console.log('d');
+        const postID = post.id;
+        const response = await fetch("/api/post/delete", {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(id),
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": localStorage.jwt,
+            },
+            body: JSON.stringify({postID}),
         });
         if (response.ok) {
             const result = await response.json();
@@ -18,17 +22,35 @@
         }
     }
 
-    function likePost() {
-
+    async function likePost() {
+        const postID = post.id;
+        const userID  = post.user.id;
+        const response = await fetch("/api/post/like", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": localStorage.jwt,
+            },
+            body: JSON.stringify({postID, userID}),
+        });
+        if (response.ok) {
+            const result = await response.json();
+            console.log(result);
+        }
     }
 </script>
 
 <article class="post">
-    <UserCard user="{user}"/>
-    <button class="delete" on:submit={deletePost}>🗑</button>
+    <UserCard user="{post.user}"/>
+    {#if post.user.id === user.id}
+        <button class="delete" on:click={deletePost}>🗑</button>
+    {/if}
     <p class="date">{post.date}</p>
     <p>{post.message}</p>
-    <button class="like" on:submit={likePost}>👍</button>
+    <div class="likes">
+        <button class="like" on:click={likePost}>👍</button>
+        {post.liked_by}
+    </div>
 </article>
 
 <style>

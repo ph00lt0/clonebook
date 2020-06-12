@@ -3,6 +3,7 @@
     import {user, posts, friends} from '../data.js';
 
     let message = null;
+    let segment;
 
     async function addPost() {
         const response = await fetch("/api/post/create", {
@@ -32,7 +33,7 @@
 </form>
 
 {#each $posts as post}
-    <Post post={post} user="{$user}"/>
+    <Post {segment} post={post} user="{$user}"/>
 {/each}
 
 

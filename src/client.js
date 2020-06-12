@@ -23,8 +23,12 @@ async function getUserData() {
 function addWriteableData(data) {
     let userDataInit = {
         id: data._id,
-        name: data.name,
-        username: data.username
+        firstName: data.firstName,
+        lastName: data.lastName,
+        status: data.status,
+        avatar: data.avatar,
+        username: data.username,
+        email: data.email
     };
 
     let postsDataInit = [];
@@ -36,10 +40,14 @@ function addWriteableData(data) {
             id: post._id,
             user: {
                 id: data._id,
-                name: data.name,
+                firstName: data.firstName,
+                lastName: data.lastName,
+                status: data.status,
+                avatar: data.avatar,
                 username: data.username
             },
             message: post.message,
+            liked_by: post.liked_by,
             date: post.date
         }]
     });
@@ -47,7 +55,10 @@ function addWriteableData(data) {
     data.friends.forEach(friend => {
         friendsDataInit = [...friendsDataInit, {
             id: friend._id,
-            name: friend.name,
+            firstName: friend.firstName,
+            lastName: friend.lastName,
+            status: friend.status,
+            avatar: friend.avatar,
             username: friend.username,
         }];
         // add friend posts to ajAllPostsTempInit
@@ -55,11 +66,15 @@ function addWriteableData(data) {
             postsDataInit = [...postsDataInit, {
                 id: post._id,
                 user: {
-                    id: data._id,
-                    name: data.name,
-                    username: data.username
+                    id: friend._id,
+                    firstName: friend.firstName,
+                    lastName: friend.lastName,
+                    status: friend.status,
+                    avatar: friend.avatar,
+                    username: friend.username
                 },
                 message: post.message,
+                liked_by: post.liked_by,
                 date: post.date
             }]
         });
