@@ -31,8 +31,6 @@ export async function post(req, res, next) {
                         const friends = friend.friends;
                         for (let i = 0; i < friends.length; i++) {
                             if (friends[i].id === userId) {
-                                console.log('x')
-
                                 friends[i].posts.push({_id: postID, message})
                             }
                             friend.save(function (err) {
