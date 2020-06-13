@@ -3,9 +3,12 @@
     export let segment;
 
     let query = null;
+    let gettingResults = false;
+    let results = [];
 
     async function getPeople() {
-        console.log('d');
+        gettingResults = true;
+
         const response = await fetch("/api/people", {
             method: 'POST',
             headers: {
@@ -15,18 +18,21 @@
             body: JSON.stringify({query}),
         });
         if (response.ok) {
-            const result = await response.json();
-            console.log(result);
+            results = await response.json();
         }
+        gettingResults = false;
+
     }
 </script>
 
-
+<form on:submit|preventDefault={getPeople}>
+    <textarea bind:value={query}></textarea>
+    <button>Search</button>
+</form>
 <section class="results">
-    <form on:submit|preventDefault={getPeople}>
-        <textarea bind:value={query}></textarea>
-        <button>Search</button>
-    </form>
+    {#each results as user}
+        <UserCard {user}></UserCard>
+   	{/each}
 </section>
 
 <style>
