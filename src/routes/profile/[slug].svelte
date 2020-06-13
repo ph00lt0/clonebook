@@ -21,13 +21,14 @@
 	export let user;
 
 	async function inviteFriend() {
+		const inviteID = user._id;
 		const response = await fetch("/api/friend/invite", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
                 "authorization": localStorage.jwt,
             },
-            body: JSON.stringify({user._id}),
+            body: JSON.stringify({inviteID}),
         });
         if (response.ok) {
             results = await response.json();
