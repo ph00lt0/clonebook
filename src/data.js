@@ -8,7 +8,8 @@ export let user = writable(
         "avatar": "avatar.png",
         "username": "username",
         "status": true,
-        "email": "a@a.com"
+        "email": "a@a.com",
+        "invitations": ""
     }
 );
 
@@ -21,6 +22,18 @@ export let friends = writable(
             "avatar": "avatar.png",
             "username": "username",
             "status": true,
+        }
+    ]
+);
+
+export let invitations = writable(
+    [
+        {
+            "id": 1,
+            "firstName": "First name",
+            "lastName": "Last name",
+            "avatar": "avatar.png",
+            "username": "username",
         }
     ]
 );

@@ -13,6 +13,7 @@ export async function post(req, res) {
             status: false,
             posts: [],
             friends: [],
+            invitations: [],
         }, (err, result) => err ? res.end(JSON.stringify(err)) : res.end(JSON.stringify("created user"))
     );
 }

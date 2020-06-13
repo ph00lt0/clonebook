@@ -16,6 +16,9 @@ export async function post(req, res, next) {
         const postUserID = req.body.userID;
 
         User.findById(postUserID, function (err, user) {
+            if (err) {
+                return res.status(500).json("Clonebook cannot get user")
+            }
             var posts = user.posts;
             for (let i = 0; i < posts.length; i++) {
                 if (posts[i].id === postID) {
@@ -27,6 +30,7 @@ export async function post(req, res, next) {
                     user.save(function (err) {
                         if (err) throw err;
                     });
+                    return res.status(200).json("OK")
                 }
             }
         });
