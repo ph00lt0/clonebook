@@ -17,18 +17,15 @@ export async function post(req, res) {
 
 
         User.findById(userID, function (err, user) {
-                if (err) {
-                    return res.status(500).json("Clonebook cannot get user")
-                }
+                if (err) return res.status(500).json("Clonebook cannot get user");
+
                 const invitations = user.invitations;
                 for (let i = 0; i < invitations.length; i++) {
                     if (invitations[i].id === inviteID) {
                         User.findOne({_id: inviteID},
                             ['firstName', 'lastName', 'username', 'avatar', 'status', 'posts'],
                             (err, friend) => {
-                                if (err) {
-                                    return res.status(500).json("Clonebook cannot find user")
-                                }
+                                if (err) return res.status(500).json("Clonebook cannot find user");
                                 user.friends.push(friend);
 
                                 User.findOne({_id: userID},
