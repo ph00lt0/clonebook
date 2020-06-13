@@ -15,7 +15,6 @@ async function getUserData() {
     });
     if (response.ok) {
         const result = await response.json();
-        console.log(result);
         addWriteableData(result)
     }
 }

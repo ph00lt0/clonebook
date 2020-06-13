@@ -2,13 +2,13 @@
     export let user;
 </script>
 
-<div>
+<a href="/profile/{user.username}">
     <img src="https://www.w3schools.com/howto/img_avatar.png">
     <h4>{user.firstName} {user.lastName}</h4>
-</div>
+</a>
 
 <style>
-    div {
+    a {
         display: flex;
     }
     img {

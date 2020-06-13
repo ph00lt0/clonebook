@@ -19,6 +19,20 @@
 	import UserCard from '../../components/Profile.svelte';
 
 	export let user;
+
+	async function inviteFriend() {
+		const response = await fetch("/api/friend/invite", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": localStorage.jwt,
+            },
+            body: JSON.stringify({user._id}),
+        });
+        if (response.ok) {
+            results = await response.json();
+        }
+	}
 </script>
 
 <style>
@@ -30,4 +44,5 @@
 
 
 <Profile {user}/>
+<button on:click="{inviteFriend}">Invite</button>
 
