@@ -10,7 +10,7 @@ export async function post(req, res) {
                 { lastName: { $regex: query, $options: 'i' } },
                 { username: { $regex: query, $options: 'i' } },
             ]
-        }, ['firstName', 'lastName', 'username'], (err, result) => {
+        }, ['firstName', 'lastName', 'username', 'avatar'], (err, result) => {
             if (err) {
                 return res.status(500).json("Clonebook cannot get users")
             }

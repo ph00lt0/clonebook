@@ -1,24 +1,12 @@
-let mongoose = require("mongoose");
-const formidable = require('formidable');
+import User from '@clonebook/models/user.js';
 
 export async function get(req, res, next) {
     const {slug} = req.params;
-    const {db} = await init();
-    const user = await db.collection('users').findOne({slug});
-
-    if (user) {
-        res.writeHead(200, {
-            'Content-Type': 'application/json'
-        });
-        res.end(JSON.stringify(user));
-    } else {
-        res.writeHead(404, {
-            'Content-Type': 'application/json'
-        });
-
-        res.end(JSON.stringify({
-            message: `Not found`
-        }));
-    }
+    User.findOne({username: slug}, ['firstName', 'lastName', 'username', 'avatar'], (err, result) => {
+        if (err) {
+            return res.status(500).json("Clonebook cannot get user")
+        }
+        return res.status(200).json(result)
+    });
 }
 

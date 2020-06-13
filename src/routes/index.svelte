@@ -26,7 +26,6 @@
 </svelte:head>
 
 <h2>Posts</h2>
-
 <form on:submit|preventDefault={addPost}>
     <textarea bind:value={message}></textarea>
     <button>Submit</button>
