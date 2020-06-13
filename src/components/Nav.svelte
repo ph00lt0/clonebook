@@ -1,6 +1,9 @@
 <script>
 	export let segment;
 	import Search from '../components/Search.svelte';
+	import Invitations from '../components/Invitations.svelte';
+	import {invitations} from '../data.js';
+
 </script>
 
 <style>
@@ -71,8 +74,7 @@
 
 		<li><Search {segment}/></li>
 
-		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
+		<li><Invitations {segment} invitations="{$invitations}"/></li>
 		<li><a rel=prefetch aria-current='{segment === "blog" ? "page" : undefined}' href='profile/me'>
 			Profile</a></li>
 		<li><a rel=prefetch aria-current='{segment === "login" ? "page" : undefined}' href='login'>Login</a></li>
