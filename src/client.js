@@ -80,7 +80,7 @@ function addWriteableData(data) {
             }]
         });
         const messages = [];
-        friend.messages.forEach(chat => {
+        friend.messages.forEach(message => {
             messages.push({
                 id: message._id,
                 message: message.message,
