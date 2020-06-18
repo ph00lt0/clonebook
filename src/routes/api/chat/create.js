@@ -13,25 +13,26 @@ export async function post(req, res, next) {
         }
         //next
         const decodedJWT = jwt.decode(token);
-        const userId = decodedJWT['id'];
+        const userID = decodedJWT['id'];
         const message = req.body.message;
-        const postID = new ObjectID();
-        User.findOneAndUpdate({
-                _id: userId
-            }, {
-                $push: {posts: {_id: postID, message}}
-            }, (err, user) => {
-                if (err) return res.status(500).json("Clonebook cannot find user");
+        const friendID = req.body.friendID;
+        const messageID = new ObjectID();
 
-                // add post to friends
-                for (let i = 0; i < user.friends.length; i++) {
-                    User.findById(user.friends[i].id, function (err, friend) {
+        User.findById(userID, function (err, user) {
+            if (err) return res.status(500).json("Clonebook cannot get user");
+
+            const friends = user.friends;
+            for (let i = 0; i < friends.length; i++) {
+                if (friends[i].id === friendID) {
+                    console.log(friends[i].posts);
+                    friends[i].messages.push({_id: messageID, message});
+
+                    User.findById(friends[i].id, function (err, friend) {
                         if (err) return res.status(500).json("Clonebook cannot get user");
-
                         const friends = friend.friends;
                         for (let i = 0; i < friends.length; i++) {
-                            if (friends[i].id === userId) {
-                                friends[i].posts.push({_id: postID, message})
+                            if (friends[i].id === userID) {
+                                friends[i].messages.push({_id: messageID, message, "by_me": false, "read": false});
                             }
                             friend.save(function (err) {
                                 if (err) throw err;
@@ -39,8 +40,10 @@ export async function post(req, res, next) {
                         }
                     });
                 }
-                return res.status(200).json("Created post")
             }
-        );
+            user.save(function (err) {
+                if (err) throw err;
+            });
+        });
     });
 }

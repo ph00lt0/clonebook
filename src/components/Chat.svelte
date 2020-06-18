@@ -6,8 +6,19 @@
     $: chat = $chats.find(singleChat => singleChat.user.id == friendID);
     let message = null;
 
-    function sendMessage() {
-        //todo
+    async function sendMessage() {
+        const response = await fetch("/api/chat/create", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": localStorage.jwt,
+            },
+            body: JSON.stringify({message, friendID}),
+        });
+        if (response.ok) {
+            const result = await response.json();
+            console.log(result);
+        }
     }
 
 </script>
