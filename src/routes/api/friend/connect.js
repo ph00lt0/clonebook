@@ -15,7 +15,6 @@ export async function post(req, res) {
         const userID = decodedJWT['id'];
         const inviteID = req.body.inviteID;
 
-
         User.findById(userID, function (err, user) {
                 if (err) return res.status(500).json("Clonebook cannot get user");
 
@@ -50,26 +49,4 @@ export async function post(req, res) {
             }
         );
     });
-
-    // User.findById(userID, function (err, user) {
-    //     if (err) {
-    //         return res.status(500).json("Clonebook cannot get user")
-    //     }
-    //     const friends = user.friends;
-    //     for (let i = 0; i < friends.length; i++) {
-    //         if (friends[i].id === inviteID) {
-    //             friends.splice(i, 1);
-    //         } else {
-    //             User.findOneAndUpdate({_id: inviteID}, {$addToSet: {friends: user}}, (err, friend) => {
-    //                 if (err) {
-    //                     return res.status(500).json("Clonebook cannot find friend")
-    //                 }
-    //                 friends.push(friend);
-    //             });
-    //         }
-    //     }
-    //     user.save(function (err) {
-    //         if (err) throw err;
-    //     });
-    // });
 }

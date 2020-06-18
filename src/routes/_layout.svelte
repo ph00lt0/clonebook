@@ -1,6 +1,7 @@
 <script>
 	import Nav from '../components/Nav.svelte';
 	import Aside from '../components/Aside.svelte';
+	import Chats from '../components/Chats.svelte';
 
 	export let segment;
 </script>
@@ -42,3 +43,4 @@
 		<Aside/>
 	</aside>
 </main>
+<Chats/>

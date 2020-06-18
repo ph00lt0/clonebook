@@ -1,5 +1,5 @@
 import * as sapper from '@sapper/app';
-import {user, friends, posts, invitations} from './data.js'
+import {user, friends, posts, chats, invitations} from './data.js'
 
 sapper.start({
     target: document.querySelector('#sapper')
@@ -31,6 +31,7 @@ function addWriteableData(data) {
     };
 
     let postsDataInit = [];
+    let chatDataInit = [];
     let friendsDataInit = [];
     let invitationsDataInit = [];
 
@@ -78,6 +79,27 @@ function addWriteableData(data) {
                 date: post.date
             }]
         });
+        const messages = [];
+        friend.messages.forEach(chat => {
+            messages.push({
+                id: message._id,
+                message: message.message,
+                date: message.date,
+                read: message.read,
+                by_me: message.by_me
+            });
+        });
+        chatDataInit = [...chatDataInit, {
+                user: {
+                    id: friend._id,
+                    firstName: friend.firstName,
+                    lastName: friend.lastName,
+                    status: friend.status,
+                    avatar: friend.avatar,
+                    username: friend.username
+                },
+                messages: messages
+            }];
     });
 
     data.invitations.forEach(invite => {
@@ -92,6 +114,7 @@ function addWriteableData(data) {
 
     user.set(userDataInit);
     friends.set(friendsDataInit);
+    chats.set(chatDataInit);
     invitations.set(invitationsDataInit);
     posts.set(postsDataInit);
 }

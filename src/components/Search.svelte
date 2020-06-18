@@ -26,7 +26,7 @@
 </script>
 
 <form on:submit|preventDefault={getPeople}>
-    <textarea bind:value={query}></textarea>
+    <input type="text" bind:value={query}/>
     <button>Search</button>
 </form>
 <section class="results">
@@ -36,5 +36,7 @@
 </section>
 
 <style>
-
+    form {
+        margin-top: 1rem;
+    }
 </style>

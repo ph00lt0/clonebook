@@ -56,3 +56,29 @@ export let posts = writable(
         }
     ]
 );
+
+export let chats = writable(
+    [
+        {
+            "user": {
+                "id": 1,
+                "firstName": "First name",
+                "lastName": "Last name",
+                "avatar": "avatar.png",
+                "username": "username",
+                "status": true,
+            },
+            "messages": [
+                {
+                    "id": 21,
+                    "message": "",
+                    "date": "",
+                    "read": false,
+                    "by_me": false
+                }
+            ],
+        }
+    ]
+);
+
+export let activeChats = writable([]);

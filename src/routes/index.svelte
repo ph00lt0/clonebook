@@ -1,6 +1,6 @@
 <script>
     import Post from '../components/Post.svelte';
-    import {user, posts, friends} from '../data.js';
+    import {user, posts} from '../data.js';
 
     let message = null;
     let segment;

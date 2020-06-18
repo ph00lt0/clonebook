@@ -75,7 +75,7 @@
 		<li><Search {segment}/></li>
 
 		<li><Invitations {segment} invitations="{$invitations}"/></li>
-		<li><a rel=prefetch aria-current='{segment === "blog" ? "page" : undefined}' href='profile/me'>
+		<li><a rel=prefetch aria-current='{segment === "profile" ? "page" : undefined}' href='profile/me'>
 			Profile</a></li>
 		<li><a rel=prefetch aria-current='{segment === "login" ? "page" : undefined}' href='login'>Login</a></li>
 	</ul>
