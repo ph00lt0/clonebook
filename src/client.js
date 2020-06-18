@@ -90,16 +90,16 @@ function addWriteableData(data) {
             });
         });
         chatDataInit = [...chatDataInit, {
-                user: {
-                    id: friend._id,
-                    firstName: friend.firstName,
-                    lastName: friend.lastName,
-                    status: friend.status,
-                    avatar: friend.avatar,
-                    username: friend.username
-                },
-                messages: messages
-            }];
+            user: {
+                id: friend._id,
+                firstName: friend.firstName,
+                lastName: friend.lastName,
+                status: friend.status,
+                avatar: friend.avatar,
+                username: friend.username
+            },
+            messages: messages
+        }];
     });
 
     data.invitations.forEach(invite => {
@@ -120,3 +120,15 @@ function addWriteableData(data) {
 }
 
 getUserData();
+
+
+ const updater = new EventSource('/api/sse');
+
+    updater.addEventListener('message', function (e) {
+        try {
+            getUserData()
+            console.log(e)
+        } catch (err) {
+            console.error(err)
+        }
+    });

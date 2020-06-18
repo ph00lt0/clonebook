@@ -2,7 +2,6 @@
     import Chats from './Chats.svelte';
     import {activeChats} from "../data.js"
     import Chat from "./Chat.svelte";
-
 </script>
 
 <div>

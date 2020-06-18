@@ -1,4 +1,5 @@
 import User from '@clonebook/models/user.js';
+import emitter from '@clonebook/events.js';
 
 const ObjectID = require('mongodb').ObjectID;
 require('dotenv').config();
@@ -24,7 +25,6 @@ export async function post(req, res, next) {
             const friends = user.friends;
             for (let i = 0; i < friends.length; i++) {
                 if (friends[i].id === friendID) {
-                    console.log(friends[i].posts);
                     friends[i].messages.push({_id: messageID, message});
 
                     User.findById(friends[i].id, function (err, friend) {
@@ -44,6 +44,8 @@ export async function post(req, res, next) {
             user.save(function (err) {
                 if (err) throw err;
             });
+            emitter.emit('updateMessages', friendID);
+            return res.status(200).json("Sent message");
         });
     });
 }
