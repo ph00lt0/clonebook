@@ -31,8 +31,8 @@ io.on('connection', (socket) => {
     // set user status online
     console.log('Hello connection')
 
-    socket.on('message', function (msg) {
-        socket.broadcast.emit('message', msg);
+    socket.on('message', function (msg, friendID) {
+        socket.broadcast.emit('message', msg, friendID);
     });
 
 

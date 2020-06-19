@@ -10,13 +10,15 @@
     let message = null;
 
     socket.on("message", function (message) {
-        console.log(message)
-        chat.messages.push({
-            message,
-            "read": false,
-            "by_me": false,
-            "date": Date.now()
-        });
+        chat.messages = [
+            ...chat.messages,
+            {
+                message,
+                "read": false,
+                "by_me": false,
+                "date": Date.now()
+            }
+        ];
     });
 
     async function sendMessage() {
@@ -26,7 +28,7 @@
             return;
         }
 
-        socket.emit('message', message);
+        socket.emit('message', message, friendID);
 
         const response = await fetch("/api/chat/create", {
             method: 'POST',
@@ -37,8 +39,16 @@
             body: JSON.stringify({message, friendID}),
         });
         if (response.ok) {
-            const result = await response.json();
-            console.log(result);
+            chat.messages = [
+                ...chat.messages,
+                {
+                    message,
+                    "read": true,
+                    "by_me": true,
+                    "date": Date.now()
+                }
+            ];
+            message = '';
         }
     }
 

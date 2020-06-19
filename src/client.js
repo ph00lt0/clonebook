@@ -121,6 +121,7 @@ function addWriteableData(data) {
 
 getUserData();
 
+
 // const sse = new EventSource('/api/sse');
 //
 // sse.onmessage = function(event) {

@@ -1,5 +1,4 @@
 import User from '@clonebook/models/user.js';
-import emitter from '@clonebook/events.js';
 
 const ObjectID = require('mongodb').ObjectID;
 require('dotenv').config();
@@ -44,7 +43,6 @@ export async function post(req, res, next) {
             user.save(function (err) {
                 if (err) throw err;
             });
-            emitter.emit('updateMessages', friendID);
             return res.status(200).json("Sent message");
         });
     });
