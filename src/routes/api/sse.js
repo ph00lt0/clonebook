@@ -9,8 +9,13 @@ export async function get(req, res) {
     res.set("Cache-Control", "no-cache");
     res.set("Access-Control-Allow-Origin", "*");
 
+    res.status(200).write("event: message\n");
+
+
     emitter.on('updateMessages', (data) => {
         console.log('emmitter should write now');
+        res.status(200).write("event: message\n");
+
 		res.status(200).write(`data: ` + data + `\n\n`)
 	})
 
