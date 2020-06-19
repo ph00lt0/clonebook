@@ -121,14 +121,19 @@ function addWriteableData(data) {
 
 getUserData();
 
+const sse = new EventSource('/api/sse');
 
- const updater = new EventSource('/api/sse');
+sse.onmessage = function(event) {
+    console.log('--------------xxx----------');
+};
 
-    updater.addEventListener('message', function (e) {
-        try {
-            getUserData()
-            console.log(e)
-        } catch (err) {
-            console.error(err)
-        }
-    });
+sse.addEventListener('message', function (e) {
+    console.log('--------------aaa----------');
+
+    try {
+        getUserData()
+        console.log(e)
+    } catch (err) {
+        console.error(err)
+    }
+});

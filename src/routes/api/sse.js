@@ -7,8 +7,10 @@ export async function get(req, res) {
     res.set("Content-Type", "text/event-stream");
     res.set("Connection", "keep-alive");
     res.set("Cache-Control", "no-cache");
+    res.set("Access-Control-Allow-Origin", "*");
 
     emitter.on('updateMessages', (data) => {
+        console.log('emmitter should write now');
 		res.status(200).write(`data: ` + data + `\n\n`)
 	})
 
