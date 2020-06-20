@@ -41,7 +41,11 @@ io.on('connection', (socket) => {
             if (err) console.log(err);
             else {
                 clients[socket.id] = userID;
-                console.log(clients)
+                const friends = user.friends;
+                for (let i = 0; i < friends.length; i++) {
+                    const friendsSocket = Object.keys(clients).find(key => clients[key] === friends[i].id);
+                    socket.to(friendsSocket).emit('online', friends[i].id);
+                }
             }
         });
     });
@@ -59,6 +63,14 @@ io.on('connection', (socket) => {
             if (err) console.log(err);
             else {
                 delete clients[sId];
+                if (user === null) {
+                    return
+                }
+                const friends = user.friends;
+                for (let i = 0; i < friends.length; i++) {
+                    const friendsSocket = Object.keys(clients).find(key => clients[key] === friends[i].id);
+                    socket.to(friendsSocket).emit('offline', friends[i].id);
+                }
             }
         });
 

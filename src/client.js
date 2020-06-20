@@ -120,30 +120,3 @@ function addWriteableData(data) {
 }
 
 getUserData();
-
-
-// const sse = new EventSource('/api/sse');
-//
-// sse.onmessage = function(event) {
-//     console.log('--------------xxx----------');
-// };
-//
-// sse.onopen = function(event) {
-//     console.log('--------------open----------');
-// };
-//
-// sse.onerror = function(event) {
-//     console.log('--------------error----------');
-//     console.log(event)
-// };
-//
-// sse.addEventListener('message', function (e) {
-//     console.log('--------------aaa----------');
-//
-//     try {
-//         getUserData()
-//         console.log(e)
-//     } catch (err) {
-//         console.error(err)
-//     }
-// });

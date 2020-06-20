@@ -1,16 +1,10 @@
 <script>
     import {user, chats} from "../data.js"
-    import io from "socket.io-client";
     import UserCard from "./UserCard.svelte";
-
-    const socket = io();
 
     export let friendID;
     $: chat = $chats.find(singleChat => singleChat.user.id == friendID);
     let message = null;
-
-    socket.emit('register', $user.id);
-
 
     socket.on("message", (message) => {
         chat.messages = [
@@ -22,10 +16,6 @@
                 "date": Date.now()
             }
         ];
-    });
-
-    socket.on('disconnect', () => {
-        socket.emit('disconnect');
     });
 
     async function sendMessage() {

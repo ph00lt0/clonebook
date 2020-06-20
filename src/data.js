@@ -1,5 +1,9 @@
 import {writable} from "svelte/store/index"
 
+export let socket = writable(
+    socket = null
+);
+
 export let user = writable(
     {
         "id": 1,
