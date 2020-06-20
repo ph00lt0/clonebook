@@ -27,13 +27,11 @@ let server = app.use(
 
 // require after declaration of server
 const io = require("socket.io")(server);
-let clients = [];
+let clients = {};
 
 io.on('connection', (socket) => {
 
     socket.on('register', (userID) => {
-        console.log('connected')
-
         // todo authenticate in some way...
         User.findOneAndUpdate({
             _id: userID
@@ -42,29 +40,28 @@ io.on('connection', (socket) => {
         }, (err, user) => {
             if (err) console.log(err);
             else {
-                let obj = {};
-                obj[socket.id] = userID;
-                clients.push(obj);
+                clients[socket.id] = userID;
+                console.log(clients)
             }
         });
     });
 
-    socket.on('message', (msg, friendID) => {
-        let friendsSocket = clients[friendID];
-        socket.to(friendsSocket).emit('message', msg, friendID);
+    socket.on('message', (message, friendID) => {
+        const friendsSocket = Object.keys(clients).find(key => clients[key] === friendID);
+        socket.to(friendsSocket).emit('message', message, friendID);
     });
 
 
     socket.on('disconnect', () => {
         const sId = socket.id;
-        for (let i = 0; i < clients.length; i++) {
-            if (clients[i][sId]) {
-                User.findOneAndUpdate({_id: clients[i][sId]}, {$set: {status: false}}, (err, user) => {
-                    if (err) console.log(err);
-                    else delete clients[i]; console.log('disconnected')
-                });
+
+        User.findOneAndUpdate({_id: clients[sId]}, {$set: {status: false}}, (err, user) => {
+            if (err) console.log(err);
+            else {
+                delete clients[sId];
             }
-        }
+        });
+
     });
 });
 
