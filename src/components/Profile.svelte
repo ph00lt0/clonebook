@@ -5,7 +5,7 @@
 </script>
 
 <div>
-    <UserCard {user}></UserCard>
+    <UserCard {user}/>
     <h4>@{user.username}</h4>
 </div>
 
