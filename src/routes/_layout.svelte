@@ -4,7 +4,6 @@
     import Chats from '../components/Chats.svelte';
 
     export let segment;
-
 </script>
 
 <style>
@@ -37,6 +36,7 @@
         }
     }
 </style>
+
 
 <Nav {segment}/>
 

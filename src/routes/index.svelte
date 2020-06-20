@@ -1,11 +1,9 @@
 <script>
     import Post from '../components/Post.svelte';
-    import Realtime from '../Realtime.svelte';
-    import {posts, user} from '../data.js';
+    import {user, posts} from '../data.js';
 
     let message = null;
     let segment;
-
 
     async function addPost() {
         const response = await fetch("/api/post/create", {
@@ -26,8 +24,6 @@
 <svelte:head>
     <title>Clonebook</title>
 </svelte:head>
-
-<Realtime/>
 
 <h2>Posts</h2>
 <form on:submit|preventDefault={addPost}>

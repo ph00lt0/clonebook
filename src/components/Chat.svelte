@@ -3,6 +3,7 @@
     import UserCard from "./UserCard.svelte";
 
     export let friendID;
+    export let socket;
     $: chat = $chats.find(singleChat => singleChat.user.id == friendID);
     let message = null;
 
