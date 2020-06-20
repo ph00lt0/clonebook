@@ -26,18 +26,29 @@ let server = app.use(
 
 // require after declaration of server
 const io = require("socket.io")(server);
+const clients = [];
 
 io.on('connection', (socket) => {
-    // set user status online
-    console.log('Hello connection')
 
+    socket.on('register', function (userID) {
+        clients[userID] = socket.id;
+        console.log('registered user')
+    });
+
+    //todo set user status online
     socket.on('message', function (msg, friendID) {
-        socket.broadcast.emit('message', msg, friendID);
+        let friendsSocket = clients[friendID];
+        socket.to(friendsSocket).emit('message', msg, friendID);
     });
 
 
     socket.on('disconnect', function () {
-        // make user  status offline
+        for (let i = 0; i < clients.length; i++) {
+            if (clients[i].userID === socket.id) {
+                delete clients[i];
+            }
+        }
+        //todo make user  status offline
     });
 });
 

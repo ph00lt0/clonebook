@@ -1,5 +1,5 @@
 <script>
-    import {chats} from "../data.js"
+    import {user, chats} from "../data.js"
     import io from "socket.io-client";
     import UserCard from "./UserCard.svelte";
 
@@ -8,6 +8,9 @@
     export let friendID;
     $: chat = $chats.find(singleChat => singleChat.user.id == friendID);
     let message = null;
+
+    socket.emit('register', $user.id);
+
 
     socket.on("message", function (message) {
         chat.messages = [
