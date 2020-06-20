@@ -4,6 +4,7 @@ import express from 'express'
 import compression from 'compression';
 import * as sapper from '@sapper/server';
 import * as mongo from '@clonebook/mongo';
+import User from '@clonebook/models/user.js';
 import isAuthenticated from '@clonebook/middleware.js';
 import http from 'http';
 
@@ -26,29 +27,44 @@ let server = app.use(
 
 // require after declaration of server
 const io = require("socket.io")(server);
-const clients = [];
+let clients = [];
 
 io.on('connection', (socket) => {
 
-    socket.on('register', function (userID) {
-        clients[userID] = socket.id;
-        console.log('registered user')
+    socket.on('register', (userID) => {
+        console.log('connected')
+
+        // todo authenticate in some way...
+        User.findOneAndUpdate({
+            _id: userID
+        }, {
+            $set: {status: true}
+        }, (err, user) => {
+            if (err) console.log(err);
+            else {
+                let obj = {};
+                obj[socket.id] = userID;
+                clients.push(obj);
+            }
+        });
     });
 
-    //todo set user status online
-    socket.on('message', function (msg, friendID) {
+    socket.on('message', (msg, friendID) => {
         let friendsSocket = clients[friendID];
         socket.to(friendsSocket).emit('message', msg, friendID);
     });
 
 
-    socket.on('disconnect', function () {
+    socket.on('disconnect', () => {
+        const sId = socket.id;
         for (let i = 0; i < clients.length; i++) {
-            if (clients[i].userID === socket.id) {
-                delete clients[i];
+            if (clients[i][sId]) {
+                User.findOneAndUpdate({_id: clients[i][sId]}, {$set: {status: false}}, (err, user) => {
+                    if (err) console.log(err);
+                    else delete clients[i]; console.log('disconnected')
+                });
             }
         }
-        //todo make user  status offline
     });
 });
 

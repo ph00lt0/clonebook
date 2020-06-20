@@ -12,7 +12,7 @@
     socket.emit('register', $user.id);
 
 
-    socket.on("message", function (message) {
+    socket.on("message", (message) => {
         chat.messages = [
             ...chat.messages,
             {
@@ -22,6 +22,10 @@
                 "date": Date.now()
             }
         ];
+    });
+
+    socket.on('disconnect', () => {
+        socket.emit('disconnect');
     });
 
     async function sendMessage() {
