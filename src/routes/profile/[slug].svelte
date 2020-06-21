@@ -19,6 +19,7 @@
 	import UserCard from '../../components/Profile.svelte';
 
 	export let user;
+	import {friends} from "../../data.js"
 
 	async function inviteFriend() {
 		const inviteID = user._id;
