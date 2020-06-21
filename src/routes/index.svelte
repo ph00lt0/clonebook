@@ -16,7 +16,24 @@
         });
         if (response.ok) {
             const result = await response.json();
-            console.log(result);
+            console.log(result)
+            $posts = [
+                ...$posts,
+                {
+                    "id": result.id,
+                    "user": {
+                        "id": $user.id,
+                        "firstName": $user.firstName,
+                        "lastName": $user.lastName,
+                        "avatar": $user.avatar,
+                        "username": $user.userName,
+                        "status": true,
+                    },
+                    "message": message,
+                    "liked_by": [],
+                    "date": Date.now()
+                }
+            ];
         }
     }
 </script>

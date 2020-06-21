@@ -33,13 +33,13 @@ export async function post(req, res, next) {
                             if (friends[i].id === userId) {
                                 friends[i].posts.push({_id: postID, message})
                             }
-                            friend.save(function (err) {
-                                if (err) throw err;
-                            });
                         }
+                        friend.save(function (err) {
+                            if (err) throw err;
+                        });
                     });
                 }
-                return res.status(200).json("Created post")
+                return res.status(200).json({"id": postID})
             }
         );
     });
