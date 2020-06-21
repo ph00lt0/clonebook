@@ -1,15 +1,12 @@
 <script>
+    import StatusIndicator from "./StatusIndicator.svelte";
+
     export let user;
-    import {friends} from '../data.js';
-    $: friend = $friends.find(friend => friend.id === user.id);
 </script>
 
 <a href="/profile/{user.username}">
-    {#if friend.status}
-        <img style="background:green" src="https://www.w3schools.com/howto/img_avatar.png">
-    {:else}
-        <img style="background:blue" src="https://www.w3schools.com/howto/img_avatar.png">
-    {/if}
+    <img src="https://www.w3schools.com/howto/img_avatar.png">
+    <StatusIndicator user={user}/>
     <h4>{user.firstName} {user.lastName}</h4>
 </a>
 

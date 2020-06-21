@@ -43,6 +43,18 @@ io.on('connection', (socket) => {
                 clients[socket.id] = userID;
                 const friends = user.friends;
                 for (let i = 0; i < friends.length; i++) {
+                    User.findById(friends[i].id, function (err, friend) {
+                        if (err) return res.status(500).json("Clonebook cannot get user");
+                        for (let i = 0; i < friend.friends.length; i++) {
+                            if (friend.friends[i].id === user.id) {
+                                console.log(friend.friends[i].id)
+                                friend.friends[i].status = true;
+                            }
+                        }
+                        friend.save(function (err) {
+                            if (err) throw err;
+                        });
+                    });
                     const friendsSocket = Object.keys(clients).find(key => clients[key] === friends[i].id);
                     socket.to(friendsSocket).emit('online', friends[i].id);
                 }
@@ -68,6 +80,18 @@ io.on('connection', (socket) => {
                 }
                 const friends = user.friends;
                 for (let i = 0; i < friends.length; i++) {
+                    User.findById(friends[i].id, function (err, friend) {
+                        if (err) return res.status(500).json("Clonebook cannot get user");
+                        for (let i = 0; i < friend.friends.length; i++) {
+                            if (friend.friends[i].id === user.id) {
+                                friend.friends[i].status = false;
+                            }
+                        }
+                        friend.save(function (err) {
+                            if (err) throw err;
+                        });
+                    });
+
                     const friendsSocket = Object.keys(clients).find(key => clients[key] === friends[i].id);
                     socket.to(friendsSocket).emit('offline', friends[i].id);
                 }

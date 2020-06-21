@@ -3,6 +3,8 @@
     import UserCard from "./UserCard.svelte";
     import Chats from "./Chats.svelte";
 
+    $: reactiveFriends = $friends.map(friend => friend);
+
     import io from "socket.io-client";
 
     const socket = io();
@@ -15,12 +17,14 @@
     });
 
     socket.on("online", (friendID) => {
+        console.log('user came online')
         for (let i = 0; i < $friends.length; i++) {
             if ($friends[i]._id === friendID) $friends[i].status = true;
         }
     });
 
     socket.on("offline", (friendID) => {
+        console.log('user went offline')
         for (let i = 0; i < $friends.length; i++) {
             if ($friends[i]._id === friendID) $friends[i].status = false;
         }
@@ -33,7 +37,7 @@
 
 <section>
     <h2>Friends</h2>
-    {#each $friends as friend}
+    {#each reactiveFriends as friend}
         <UserCard user={friend}/>
             <button on:click|preventDefault={()=> openChat(friend.id)}>Open chat</button>
     {/each}
