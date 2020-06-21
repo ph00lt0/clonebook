@@ -1,8 +1,12 @@
 <script>
     import UserCard from '../components/UserCard.svelte';
+    import {posts} from "../data.js"
+
     export let segment;
 
-    export let post;
+    export let postID;
+    $: post = $posts.find(singlePost => singlePost.id == postID);
+
     export let user;
 
     async function deletePost() {
@@ -17,7 +21,6 @@
         });
         if (response.ok) {
             const result = await response.json();
-            console.log(result);
         }
     }
 
@@ -35,6 +38,7 @@
         if (response.ok) {
             const result = await response.json();
             console.log(result);
+            post.liked_by = result.liked_by;
         }
     }
 </script>

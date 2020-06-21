@@ -16,7 +16,6 @@
         });
         if (response.ok) {
             const result = await response.json();
-            console.log(result)
             $posts = [
                 ...$posts,
                 {
@@ -49,7 +48,7 @@
 </form>
 
 {#each $posts as post}
-    <Post {segment} post={post} user="{$user}"/>
+    <Post {segment} postID={post.id} user="{$user}"/>
 {/each}
 
 
