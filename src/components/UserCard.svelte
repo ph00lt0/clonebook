@@ -1,12 +1,9 @@
 <script>
-    import StatusIndicator from "./StatusIndicator.svelte";
-
     export let user;
 </script>
 
 <a href="/profile/{user.username}">
     <img src="https://www.w3schools.com/howto/img_avatar.png">
-    <StatusIndicator user={user}/>
     <h4>{user.firstName} {user.lastName}</h4>
 </a>
 

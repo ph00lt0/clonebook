@@ -47,7 +47,6 @@ io.on('connection', (socket) => {
                         if (err) return res.status(500).json("Clonebook cannot get user");
                         for (let i = 0; i < friend.friends.length; i++) {
                             if (friend.friends[i].id === user.id) {
-                                console.log(friend.friends[i].id)
                                 friend.friends[i].status = true;
                             }
                         }

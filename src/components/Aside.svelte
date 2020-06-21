@@ -1,9 +1,9 @@
 <script>
     import {friends, user, activeChats} from '../data.js';
-    import UserCard from "./UserCard.svelte";
+    import FriendCard from "./FriendCard.svelte";
     import Chats from "./Chats.svelte";
 
-    $: reactiveFriends = $friends.map(friend => friend);
+    $: reactiveFriends = $friends;
 
     import io from "socket.io-client";
 
@@ -16,20 +16,6 @@
         socket.emit('disconnect');
     });
 
-    socket.on("online", (friendID) => {
-        console.log('user came online')
-        for (let i = 0; i < $friends.length; i++) {
-            if ($friends[i]._id === friendID) $friends[i].status = true;
-        }
-    });
-
-    socket.on("offline", (friendID) => {
-        console.log('user went offline')
-        for (let i = 0; i < $friends.length; i++) {
-            if ($friends[i]._id === friendID) $friends[i].status = false;
-        }
-    });
-
     function openChat(userID) {
         $activeChats = [...$activeChats, userID]
     }
@@ -38,7 +24,7 @@
 <section>
     <h2>Friends</h2>
     {#each reactiveFriends as friend}
-        <UserCard user={friend}/>
+        <FriendCard user={friend} {socket}/>
             <button on:click|preventDefault={()=> openChat(friend.id)}>Open chat</button>
     {/each}
 </section>
