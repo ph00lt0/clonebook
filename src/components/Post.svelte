@@ -5,9 +5,12 @@
     export let segment;
 
     export let postID;
-    $: post = $posts.find(singlePost => singlePost.id == postID);
-
     export let user;
+
+    $: post = $posts.find(singlePost => singlePost.id == postID);
+    $: likeCount = Object.keys(post.liked_by).length;
+    $: liking = (post.liked_by.includes(user.id) ? 'liked' : 'like');
+
 
     async function deletePost() {
         const postID = post.id;
@@ -26,7 +29,7 @@
 
     async function likePost() {
         const postID = post.id;
-        const userID  = post.user.id;
+        const userID = post.user.id;
         const response = await fetch("/api/post/like", {
             method: 'POST',
             headers: {
@@ -37,7 +40,6 @@
         });
         if (response.ok) {
             const result = await response.json();
-            console.log(result);
             post.liked_by = result.liked_by;
         }
     }
@@ -51,8 +53,26 @@
     <p class="date">{post.date}</p>
     <p>{post.message}</p>
     <div class="likes">
-        <button class="like" on:click={likePost}>👍</button>
-        {post.liked_by}
+        <button class="delete" on:click={deletePost}>🗑</button>
+        <button class={liking} on:click={likePost}>👍</button>
+
+        {#if liking === 'liked'}
+            by you
+            {#if likeCount === 2 }
+                and 1 other member
+            {/if}
+            {#if likeCount > 2 }
+                {likeCount - 1} and other members
+            {/if}
+        {:else}
+            {#if likeCount === 1 }
+                by 1 other member
+            {/if}
+            {#if likeCount > 1 }
+                by {likeCount} other members
+            {/if}
+        {/if}
+
     </div>
 </article>
 
@@ -73,6 +93,10 @@
 
     button.like {
 
+    }
+
+    button.liked {
+        background: blue;
     }
 
     button.delete {
