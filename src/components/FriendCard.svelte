@@ -6,7 +6,6 @@
     export let user;
 
     $: status = $friends.find(singleFriend => singleFriend.id == user.id).status;
-    console.log(status)
 
      socket.on("online", (friendID) => {
          console.log("user came online")
@@ -20,13 +19,13 @@
 
 
 <UserCard {user}/>
-{#if status == true}
-    <span class="online"></span>
+{#if status}
+    <div></div>
 {/if}
 
 
 <style>
-    span {
+    div {
         width: 1rem;
         height: 1rem;
         border-radius: 50%;
