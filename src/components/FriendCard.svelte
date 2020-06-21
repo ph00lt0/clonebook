@@ -8,12 +8,11 @@
     $: status = $friends.find(singleFriend => singleFriend.id == user.id).status;
 
      socket.on("online", (friendID) => {
-         console.log("user came online")
-        status = true;
+         if (user.id == friendID) status = true;
     });
 
     socket.on("offline", (friendID) => {
-        status = false;
+         if (user.id == friendID) status = false;
     });
 </script>
 

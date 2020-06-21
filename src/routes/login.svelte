@@ -33,7 +33,9 @@
     <input bind:value={username} type="text">
     <input bind:value={password} type="password">
     <button>Log in</button>
+    <a href='signup'>Sign up</a>
 </form>
+
 
 <style>
     form {

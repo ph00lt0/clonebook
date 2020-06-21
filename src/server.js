@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
                         });
                     });
                     const friendsSocket = Object.keys(clients).find(key => clients[key] === friends[i].id);
-                    socket.to(friendsSocket).emit('online', friends[i].id);
+                    socket.to(friendsSocket).emit('online', userID);
                 }
             }
         });
@@ -92,7 +92,7 @@ io.on('connection', (socket) => {
                     });
 
                     const friendsSocket = Object.keys(clients).find(key => clients[key] === friends[i].id);
-                    socket.to(friendsSocket).emit('offline', friends[i].id);
+                    socket.to(friendsSocket).emit('offline', user.id);
                 }
             }
         });

@@ -33,10 +33,10 @@ export async function post(req, res, next) {
                             if (friends[i].id === userID) {
                                 friends[i].messages.push({_id: messageID, message, "by_me": false, "read": false});
                             }
-                            friend.save(function (err) {
-                                if (err) throw err;
-                            });
                         }
+                        friend.save(function (err) {
+                            if (err) throw err;
+                        });
                     });
                 }
             }
