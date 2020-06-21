@@ -53,7 +53,9 @@
     <p class="date">{post.date}</p>
     <p>{post.message}</p>
     <div class="likes">
-        <button class="delete" on:click={deletePost}>🗑</button>
+        {#if post.user.id === user.id }
+            <button class="delete" on:click={deletePost}>🗑</button>
+        {/if}
         <button class={liking} on:click={likePost}>👍</button>
 
         {#if liking === 'liked'}
