@@ -7,6 +7,11 @@
     export let socket;
     $: chat = $chats.find(singleChat => singleChat.user.id == friendID);
     let message = null;
+    let minized = false;
+
+    function toggleChat() {
+        minized = !minized;
+    }
 
     function scrollDown() {
         const chatSection = document.querySelector('section');
@@ -28,8 +33,6 @@
         chatSection.scrollTo(0, chatSection.scrollHeight);
 	});
 
-
-
     socket.on("message", (message) => {
         chat.messages = [
             ...chat.messages,
@@ -40,6 +43,7 @@
                 "date": Date.now()
             }
         ];
+        minized = false;
     });
 
     async function sendMessage() {
@@ -78,19 +82,26 @@
 <article>
     <header>
         <UserCard user={chat.user}/>
+        <button on:click|preventDefault={toggleChat}>_</button>
     </header>
     <section bind:this={chatSection}>
-        {#each chat.messages as message}
-            {#if message.by_me}
-                <div class="out">{message.message}</div>
-            {:else}
-                <div class="in">{message.message}</div>
-            {/if}
-        {/each}
+        {#if minized === false}
+            <div class="chats">
+                {#each chat.messages as message}
+                    {#if message.by_me}
+                        <div class="message out">{message.message}</div>
+                    {:else}
+                        <div class="message in">{message.message}</div>
+                    {/if}
+                {/each}
+            </div>
+        {/if}
     </section>
-    <form action="" on:submit|preventDefault={sendMessage}>
-        <input bind:value={message} type="text" name="message" placeholder="Write a message...">
-    </form>
+    {#if minized === false}
+        <form action="" on:submit|preventDefault={sendMessage}>
+            <input bind:value={message} type="text" name="message" placeholder="Write a message...">
+        </form>
+    {/if}
 </article>
 
 <style>
@@ -108,6 +119,9 @@
     section {
         margin-top: 3em;
         overflow-y: scroll;
+    }
+
+    .chats {
         height: 30em;
     }
 
@@ -116,9 +130,21 @@
         position: absolute;
         background: white;
         border-bottom: 2px solid blue;
+        display: grid;
+        grid-template-columns: 4fr 1fr;
     }
 
-    div {
+    button {
+        margin-top: 0.5em;
+        height: 2rem;
+        font-size: 1rem;
+        border: none;
+        background: #d3d3d3;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .message {
         max-width: 12em;
         border-radius: 15px;
         margin-top: 0.5em;
