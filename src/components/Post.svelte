@@ -93,8 +93,11 @@
         font-size: 0.8rem;
     }
 
-    button.like {
-
+    button {
+        height: 2rem;
+        width: 2rem;
+        border-radius: 50%;
+        border: none;
     }
 
     button.liked {

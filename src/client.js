@@ -123,4 +123,4 @@ getUserData();
 
 setInterval( ()=> {
     getUserData();
-}, 10000);
+}, 60000);
