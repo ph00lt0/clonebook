@@ -106,6 +106,7 @@
     }
 
     section {
+        margin-top: 3em;
         overflow-y: scroll;
         height: 30em;
     }

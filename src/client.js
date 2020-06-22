@@ -120,3 +120,7 @@ function addWriteableData(data) {
 }
 
 getUserData();
+
+setInterval( ()=> {
+    getUserData();
+}, 10000);
