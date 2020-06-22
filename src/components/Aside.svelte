@@ -17,7 +17,9 @@
     });
 
     function openChat(userID) {
-        $activeChats = [...$activeChats, userID]
+        if (!$activeChats.includes(userID)) {
+            $activeChats = [...$activeChats, userID]
+        }
     }
 </script>
 

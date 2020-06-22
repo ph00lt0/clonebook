@@ -19,6 +19,7 @@
         });
         if (response.ok) {
             results = await response.json();
+            setTimeout( ()=>{results = []; query = null}, 5000)
         }
         gettingResults = false;
 

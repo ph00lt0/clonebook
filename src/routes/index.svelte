@@ -17,7 +17,6 @@
         if (response.ok) {
             const result = await response.json();
             $posts = [
-                ...$posts,
                 {
                     "id": result.id,
                     "user": {
@@ -30,8 +29,9 @@
                     },
                     "message": message,
                     "liked_by": [],
-                    "date": Date.now()
-                }
+                    "date": "Just now"
+                },
+                ...$posts,
             ];
         }
     }
@@ -70,6 +70,7 @@
         padding: 1em;
         border-radius: 20px;
         height: 5rem;
+        margin-bottom: 1em;
     }
 
     button {
