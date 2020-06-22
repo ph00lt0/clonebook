@@ -8,13 +8,15 @@
 
 <style>
     nav {
-        border-bottom: 1px solid rgba(255, 62, 0, 0.1);
         font-weight: 300;
         padding: 0 1em;
         position: fixed;
         z-index: 1;
         background: white;
         width: 100vw;
+        -webkit-box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
+        -moz-box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
+        box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
     }
 
     ul {
@@ -94,13 +96,11 @@
             <Search {segment}/>
         </li>
         <li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>Home</a></li>
-
-
+        <li><a rel=prefetch aria-current='{segment === "profile" ? "page" : undefined}' href='profile/me'>
+            Profile</a></li>
         <li>
             <Invitations {segment} invitations="{$invitations}"/>
         </li>
-        <li><a rel=prefetch aria-current='{segment === "profile" ? "page" : undefined}' href='profile/me'>
-            Profile</a></li>
         <li><a rel=prefetch aria-current='{segment === "login" ? "page" : undefined}' href='login'>Login</a></li>
     </ul>
 </nav>

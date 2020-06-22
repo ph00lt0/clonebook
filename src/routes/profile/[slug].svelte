@@ -38,8 +38,17 @@
 </script>
 
 <style>
-
-</style>
+	button {
+        height: 2rem;
+        font-size: 1rem;
+        border: none;
+        background: blue;
+        color: white;
+        border-radius: 15px;
+        min-width: 7em;
+        text-align: center;
+    }
+ </style>
 
 <svelte:head>
 	<title>Profile of {user.firstName}</title>
@@ -47,5 +56,5 @@
 
 
 <Profile {user}/>
-<button on:click="{inviteFriend}">Invite</button>
+<button on:click="{inviteFriend}">👋 Connect</button>
 

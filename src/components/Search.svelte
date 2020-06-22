@@ -32,7 +32,7 @@
 <section class="results">
     {#each results as user}
         <UserCard {user}></UserCard>
-   	{/each}
+    {/each}
 </section>
 
 <style>
@@ -66,6 +66,7 @@
     section {
         position: absolute;
         background: #f8f8f8;
+        top: 3.5em;
         left: 5.6em;
         width: 15em;
         border-radius: 0 0 20px 20px;
