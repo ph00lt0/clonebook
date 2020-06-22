@@ -1,7 +1,5 @@
 <script>
     import Post from '../components/Post.svelte';
-    import { stores } from '@sapper/app';
-    const { preloading, page, session } = stores();
 
     let username;
     let password;
@@ -45,9 +43,11 @@
 <style>
     form {
         padding: 1em;
+        width: 22em;
         -webkit-box-shadow: 14px 14px 31px 21px rgba(237,237,237,1);
         -moz-box-shadow: 14px 14px 31px 21px rgba(237,237,237,1);
         box-shadow: 14px 14px 31px 21px rgba(237,237,237,1);
+        border-radius: 20px;
     }
 
     input {

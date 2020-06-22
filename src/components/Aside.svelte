@@ -24,13 +24,23 @@
 </script>
 
 <section>
-    <h2>Friends</h2>
-    {#each reactiveFriends as friend}
-        <div>
-            <FriendCard user={friend} {socket}/>
-            <button on:click|preventDefault={()=> openChat(friend.id)}>💬</button>
-        </div>
-    {/each}
+    <!--User id is 0 before data is loaded-->
+    {#if $user.id !== 0}
+        <h2>Friends</h2>
+        {#each reactiveFriends as friend}
+            <div>
+                <FriendCard user={friend} {socket}/>
+                <button on:click|preventDefault={()=> openChat(friend.id)}>💬</button>
+            </div>
+        {/each}
+    {:else}
+        <article>
+            <h2>Welcome</h2>
+            <p>Log in with your account or create one.</p>
+            <p>This is an exam project for Copenhagen School of Design and Technology.</p>
+            <p>This application is not secure nor privacy friendly just like Facebook.</p>
+        </article>
+    {/if}
 </section>
 <Chats {socket}/>
 
@@ -38,6 +48,10 @@
     section {
         position: fixed;
         width: 20vw;
+    }
+
+    article {
+        margin-right: 1em;
     }
 
     div {

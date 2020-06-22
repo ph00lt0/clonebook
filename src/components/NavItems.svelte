@@ -13,6 +13,7 @@
     }
 </script>
 
+<!--User id is 0 before data is loaded-->
 {#if $user.id !== 0}
 
 <li>

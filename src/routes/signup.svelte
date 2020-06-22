@@ -1,7 +1,5 @@
 <script>
     import Post from '../components/Post.svelte';
-    import { stores } from '@sapper/app';
-    const { preloading, page, session } = stores();
 
     let username;
     let password;
@@ -9,7 +7,7 @@
     let firstName;
     let lastName;
 
-    async function login() {
+    async function signup() {
         const loginData = {
             "username": username,
             "password": password,
@@ -24,7 +22,7 @@
         });
         if (response.ok) {
             const result = await response.json();
-            localStorage.jwt = result.token;
+            window.location = '/login';
         }
     }
 </script>
@@ -35,7 +33,7 @@
 
 <h2>Sign up</h2>
 
-<form on:submit|preventDefault={login}>
+<form on:submit|preventDefault={signup}>
     <input bind:value={firstName} placeholder="First name" type="text">
     <input bind:value={lastName} placeholder="Last name" type="text">
     <input bind:value={email} placeholder="Email" type="email">
@@ -51,6 +49,9 @@
         -webkit-box-shadow: 14px 14px 31px 21px rgba(237,237,237,1);
         -moz-box-shadow: 14px 14px 31px 21px rgba(237,237,237,1);
         box-shadow: 14px 14px 31px 21px rgba(237,237,237,1);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-radius: 20px;
     }
 
     input {
@@ -69,12 +70,14 @@
     }
 
     button {
+        grid-column: 1 / -1;
         border-radius: 20px;
         font-size: 1rem;
         min-width: 10em;
         display: inline-block;
         text-align: center;
         height: 2em;
+        width: 21em;
         text-decoration: none;
         line-height: 2rem;
         padding: 0;
