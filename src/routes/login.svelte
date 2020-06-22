@@ -35,8 +35,8 @@
 <h2>Login</h2>
 
 <form on:submit|preventDefault={login}>
-    <input bind:value={username} type="text">
-    <input bind:value={password} type="password">
+    <input bind:value={username} placeholder="Username" type="text">
+    <input bind:value={password} placeholder="Password" type="password">
     <button>Log in</button>
     <a href='signup'>Sign up</a>
 </form>
@@ -48,5 +48,45 @@
         -webkit-box-shadow: 14px 14px 31px 21px rgba(237,237,237,1);
         -moz-box-shadow: 14px 14px 31px 21px rgba(237,237,237,1);
         box-shadow: 14px 14px 31px 21px rgba(237,237,237,1);
+    }
+
+    input {
+        height: 2em;
+        font-size: 1em;
+        padding: 0.5em;
+        background: #F6F6F6;
+        border: none;
+        border-radius: 20px;
+        display: block;
+        margin-bottom: 1em;
+        width: 20em;
+        -webkit-box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
+        -moz-box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
+        box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
+    }
+
+    a, button {
+        border-radius: 20px;
+        font-size: 1rem;
+        min-width: 10em;
+        display: inline-block;
+        text-align: center;
+        height: 2em;
+        background: white;
+        text-decoration: none;
+        line-height: 2rem;
+        padding: 0;
+        vertical-align: middle;
+        margin: 0;
+        -webkit-box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
+        -moz-box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
+        box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
+    }
+
+    button {
+        margin-right: 1em;
+        border: none;
+        background: blue;
+        color: white;
     }
 </style>
