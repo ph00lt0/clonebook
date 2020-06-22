@@ -8,6 +8,7 @@ sapper.start({
 
 async function getUserData() {
     if (!localStorage.jwt) {
+        if (window.location.pathname !== '/login') window.location = '/login';
         return
     }
     const response = await fetch("/api/user", {

@@ -1,7 +1,6 @@
 <script>
     import Nav from '../components/Nav.svelte';
     import Aside from '../components/Aside.svelte';
-
     export let segment;
 </script>
 
@@ -12,7 +11,7 @@
     }
 
     section {
-        mzax-width: 56em;
+        max-width: 56em;
         width: 100%;
         background-color: white;
         margin: 0 auto;
@@ -35,7 +34,6 @@
         }
     }
 </style>
-
 
 <Nav {segment}/>
 
