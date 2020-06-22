@@ -3,7 +3,7 @@ import {writable} from "svelte/store/index"
 
 export let user = writable(
     {
-        "id": 1,
+        "id": 0,
         "firstName": "",
         "lastName": "",
         "avatar": "",

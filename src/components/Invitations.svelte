@@ -1,10 +1,10 @@
 <script>
     import UserCard from '../components/UserCard.svelte';
+    import {invitations} from '../data.js';
 
     export let segment;
-    export let invitations;
 
-    $: inviationCount = Object.keys(invitations).length;
+    $: inviationCount = Object.keys($invitations).length;
 
     let showNotifications = false;
 
@@ -31,7 +31,7 @@
 {#if showNotifications}
     <section class="results">
         <h3>Invitations</h3>
-        {#each invitations as user}
+        {#each $invitations as user}
             <div>
                 <UserCard {user}></UserCard>
                 <button class="connect" on:click|preventDefault={()=> addFriend(user.id)}>🤝 Connect</button>

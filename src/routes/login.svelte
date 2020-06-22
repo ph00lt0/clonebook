@@ -6,6 +6,10 @@
     let username;
     let password;
 
+    if (localStorage.jwt) {
+        window.location = '/';
+    }
+
     async function login() {
         const loginData = {
             "username": username,
@@ -19,6 +23,7 @@
         if (response.ok) {
             const result = await response.json();
             localStorage.jwt = result.token;
+            window.location = '/login';
         }
     }
 </script>

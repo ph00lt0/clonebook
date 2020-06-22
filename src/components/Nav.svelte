@@ -1,8 +1,7 @@
 <script>
     export let segment;
-    import Search from '../components/Search.svelte';
-    import Invitations from '../components/Invitations.svelte';
-    import {invitations} from '../data.js';
+    import NavItems from '../components/NavItems.svelte';
+    import {user} from '../data.js';
 
 </script>
 
@@ -92,16 +91,7 @@
                 </defs>
             </svg>
         </li>
-        <li>
-            <Search {segment}/>
-        </li>
-        <li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>Home</a></li>
-        <li><a rel=prefetch aria-current='{segment === "profile" ? "page" : undefined}' href='profile/me'>
-            Profile</a></li>
-        <li>
-            <Invitations {segment} invitations="{$invitations}"/>
-        </li>
-        <li><a rel=prefetch aria-current='{segment === "login" ? "page" : undefined}' href='login'>Login</a></li>
+        <NavItems  {segment} {user}/>
     </ul>
 </nav>
 <div class="space"></div>
