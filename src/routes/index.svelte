@@ -43,8 +43,8 @@
 
 <h2>Posts</h2>
 <form on:submit|preventDefault={addPost}>
-    <textarea bind:value={message}></textarea>
-    <button>Submit</button>
+    <textarea bind:value={message} placeholder="What do you like to share?"></textarea>
+    <button>Share  🚀</button>
 </form>
 
 {#each $posts as post}
@@ -58,5 +58,28 @@
         -webkit-box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
         -moz-box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
         box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
+        border-radius: 20px;
+    }
+
+    textarea {
+        width: calc(100% - 2em);
+        font-size: 1em;
+        resize: none;
+        border: none;
+        background: #f8f8f8;
+        padding: 1em;
+        border-radius: 20px;
+        height: 5rem;
+    }
+
+    button {
+        height: 2rem;
+        font-size: 1rem;
+        border: none;
+        background: blue;
+        color: white;
+        border-radius: 15px;
+        min-width: 5.5em;
+        text-align: center;
     }
 </style>

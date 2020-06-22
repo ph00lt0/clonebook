@@ -83,6 +83,7 @@
         position: relative;
         margin-top: 2em;
         padding: 1em;
+        border-radius: 20px;
         -webkit-box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
         -moz-box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
         box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
@@ -94,6 +95,11 @@
     }
 
     button {
+        -webkit-box-shadow: -8px -6px 12px -8px rgba(110, 110, 110, 1);
+        -moz-box-shadow: -8px -6px 12px -8px rgba(110, 110, 110, 1);
+        box-shadow: -8px -6px 12px -8px rgba(110, 110, 110, 1);
+        background-color: #d3d3d3;
+        padding-left: 0.5rem;
         height: 2rem;
         width: 2rem;
         border-radius: 50%;

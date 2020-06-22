@@ -4,12 +4,12 @@ import {writable} from "svelte/store/index"
 export let user = writable(
     {
         "id": 1,
-        "firstName": "First name",
-        "lastName": "Last name",
-        "avatar": "avatar.png",
-        "username": "username",
+        "firstName": "",
+        "lastName": "",
+        "avatar": "",
+        "username": "",
         "status": true,
-        "email": "a@a.com",
+        "email": "",
         "invitations": ""
     }
 );
@@ -18,10 +18,10 @@ export let friends = writable(
     [
         {
             "id": 1,
-            "firstName": "First name",
-            "lastName": "Last name",
-            "avatar": "avatar.png",
-            "username": "username",
+            "firstName": "",
+            "lastName": "",
+            "avatar": "",
+            "username": "",
             "status": true,
         }
     ]
@@ -31,10 +31,10 @@ export let invitations = writable(
     [
         {
             "id": 1,
-            "firstName": "First name",
-            "lastName": "Last name",
-            "avatar": "avatar.png",
-            "username": "username",
+            "firstName": "",
+            "lastName": "",
+            "avatar": "",
+            "username": "",
         }
     ]
 );
@@ -45,10 +45,10 @@ export let posts = writable(
             "id": 1,
             "user": {
                 "id": 1,
-                "firstName": "First name",
-                "lastName": "Last name",
-                "avatar": "avatar.png",
-                "username": "username",
+                "firstName": "",
+                "lastName": "",
+                "avatar": "",
+                "username": "",
                 "status": true,
             },
             "message": "",
@@ -63,10 +63,10 @@ export let chats = writable(
         {
             "user": {
                 "id": 1,
-                "firstName": "First name",
-                "lastName": "Last name",
-                "avatar": "avatar.png",
-                "username": "username",
+                "firstName": "",
+                "lastName": "",
+                "avatar": "",
+                "username": "",
                 "status": true,
             },
             "messages": [

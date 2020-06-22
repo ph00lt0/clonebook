@@ -26,8 +26,8 @@
 </script>
 
 <form on:submit|preventDefault={getPeople}>
-    <input type="text" bind:value={query}/>
-    <button>Search</button>
+    <input placeholder="Search on Clonebook" type="text" bind:value={query}/>
+    <button>🔍</button>
 </form>
 <section class="results">
     {#each results as user}
@@ -37,6 +37,40 @@
 
 <style>
     form {
-        margin-top: 1rem;
+        margin-top: 0.5em;
+        margin-right: 1em;
+        margin-left: 1em;
+        background: #f8f8f8;
+        border-radius: 20px;
+    }
+
+    button {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        background: none;
+        font-size: 1em;
+        height: 2rem;
+        width: 2rem;
+        border-radius: 50%;
+        border: none;
+    }
+
+    input {
+        padding: 10px;
+        background: none;
+        font-size: 1em;
+        border: none;
+        height: 20px;
+    }
+
+    section {
+        position: absolute;
+        background: #f8f8f8;
+        left: 5.6em;
+        width: 15em;
+        border-radius: 0 0 20px 20px;
+       -webkit-box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
+        -moz-box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
+        box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
     }
 </style>

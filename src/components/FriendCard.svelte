@@ -20,6 +20,8 @@
 <UserCard {user}/>
 {#if status}
     <div></div>
+{:else}
+    <div class="offline"></div>
 {/if}
 
 
@@ -29,5 +31,12 @@
         height: 1rem;
         border-radius: 50%;
         background: green;
+        position: absolute;
+        bottom: 0.2em;
+        left: 2.5em;
+    }
+
+    .offline {
+        background: #ffd000;
     }
 </style>
