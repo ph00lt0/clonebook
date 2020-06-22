@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27eb1ad5-8a5e-4d1a-923f-f9ddca8bd8d5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Chat.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Chat.svelte" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -59,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-930">
-              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+            <state relative-caret-position="667">
+              <caret line="29" column="25" lean-forward="true" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -71,14 +72,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Chat.svelte">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="45" column="23" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="23" />
+            <state relative-caret-position="314">
+              <caret line="124" column="18" selection-start-line="124" selection-start-column="18" selection-end-line="124" selection-end-column="18" />
               <folding>
                 <element signature="e#13#51#0#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/data.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1351">
+              <caret line="75" column="31" selection-start-line="75" selection-start-column="31" selection-end-line="75" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -134,7 +144,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>'src/routes/api/events</find>
       <find>@clonebook/events.js</find>
       <find>sent mess</find>
       <find>eventsource</find>
@@ -164,6 +173,7 @@
       <find>sticky</find>
       <find>likedBy</find>
       <find>message</find>
+      <find>date</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -217,7 +227,6 @@
         <option value="$PROJECT_DIR$/src/routes/api/post/create.js" />
         <option value="$PROJECT_DIR$/src/routes/api/post/like.js" />
         <option value="$PROJECT_DIR$/src/components/Chats.svelte" />
-        <option value="$PROJECT_DIR$/src/client.js" />
         <option value="$PROJECT_DIR$/src/components/Post.svelte" />
         <option value="$PROJECT_DIR$/src/data.js" />
         <option value="$PROJECT_DIR$/src/components/FriendCard.svelte" />
@@ -229,6 +238,7 @@
         <option value="$PROJECT_DIR$/src/components/Aside.svelte" />
         <option value="$PROJECT_DIR$/src/components/Invitations.svelte" />
         <option value="$PROJECT_DIR$/src/components/Chat.svelte" />
+        <option value="$PROJECT_DIR$/src/client.js" />
       </list>
     </option>
   </component>
@@ -357,12 +367,12 @@
       <workItem from="1592424279780" duration="9533000" />
       <workItem from="1592662123652" duration="20884000" />
       <workItem from="1592694155887" duration="24507000" />
-      <workItem from="1592823373445" duration="13084000" />
+      <workItem from="1592823373445" duration="13804000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="238088000" />
+    <option name="totallyTimeSpent" value="238808000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -390,7 +400,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32982087" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32982087" />
-      <window_info anchor="bottom" x="56" y="45" width="1568" height="1005" id="Terminal" order="9" weight="0.36037934" />
+      <window_info active="true" anchor="bottom" x="56" y="45" width="1568" height="1005" id="Terminal" order="9" visible="true" weight="0.36037934" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="DB Execution Console" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
@@ -649,13 +659,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="75" column="31" selection-start-line="75" selection-start-column="31" selection-end-line="75" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/FriendCard.svelte">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -701,16 +704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-930">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Aside.svelte">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
@@ -751,10 +744,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Chat.svelte">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="45" column="23" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="23" />
+        <state relative-caret-position="314">
+          <caret line="124" column="18" selection-start-line="124" selection-start-column="18" selection-end-line="124" selection-end-column="18" />
           <folding>
             <element signature="e#13#51#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1351">
+          <caret line="75" column="31" selection-start-line="75" selection-start-column="31" selection-end-line="75" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="29" column="25" lean-forward="true" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>

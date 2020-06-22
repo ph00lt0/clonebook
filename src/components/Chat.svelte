@@ -122,7 +122,7 @@
     }
 
     .chats {
-        height: 30em;
+        height: 25em;
     }
 
     header {

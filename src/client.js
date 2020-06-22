@@ -49,7 +49,7 @@ function addWriteableData(data) {
             },
             message: post.message,
             liked_by: post.liked_by,
-            date: post.date
+            date: new Date(post.date),
         }]
     });
 
@@ -76,7 +76,7 @@ function addWriteableData(data) {
                 },
                 message: post.message,
                 liked_by: post.liked_by,
-                date: post.date
+                date: new Date(post.date),
             }]
         });
         const messages = [];
@@ -84,7 +84,7 @@ function addWriteableData(data) {
             messages.push({
                 id: message._id,
                 message: message.message,
-                date: message.date,
+                date: new Date(message.date),
                 read: message.read,
                 by_me: message.by_me
             });
