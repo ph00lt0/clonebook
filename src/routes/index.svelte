@@ -2,6 +2,8 @@
     import Post from '../components/Post.svelte';
     import {user, posts} from '../data.js';
 
+    $: sortedPosts=$posts.sort((a,b)=>b.date-a.date);
+
     let message = null;
     let segment;
 
@@ -47,7 +49,7 @@
     <button>Share  🚀</button>
 </form>
 
-{#each $posts as post}
+{#each sortedPosts as post}
     <Post {segment} postID={post.id} user="{$user}"/>
 {/each}
 
