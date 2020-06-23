@@ -12,6 +12,7 @@ async function getUserData() {
         return
     }
     const response = await fetch("/api/user", {
+        method: "POST",
         headers: {authorization: localStorage.jwt},
     });
     if (response.ok) {

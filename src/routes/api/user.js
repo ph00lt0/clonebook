@@ -2,7 +2,7 @@ import User from '@clonebook/models/user.js';
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-export async function get(req, res) {
+export async function post(req, res) {
 	if (!req.headers.authorization) {
 		return res.redirect('/login');
 	}
