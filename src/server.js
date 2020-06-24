@@ -17,7 +17,7 @@ app.use(isAuthenticated);
 
 let server = app.use(
     compression({threshold: 0}),
-    sirv('static', {dev}),
+    sirv('static'),
     sapper.middleware()
 ).listen(PORT, err => {
     if (err) console.log('error', err);
