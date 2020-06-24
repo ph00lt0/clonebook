@@ -59,9 +59,9 @@ io.on('connection', (socket) => {
         });
     });
 
-    socket.on('message', (message, friendID) => {
+    socket.on('message', (message, friendID, userID) => {
         const friendsSocket = Object.keys(clients).find(key => clients[key] === friendID);
-        socket.to(friendsSocket).emit('message', message, friendID);
+        socket.to(friendsSocket).emit('message', message, userID);
     });
 
 

@@ -33,17 +33,20 @@
         chatSection.scrollTo(0, chatSection.scrollHeight);
 	});
 
-    socket.on("message", (message) => {
-        chat.messages = [
-            ...chat.messages,
-            {
-                message,
-                "read": false,
-                "by_me": false,
-                "date": Date.now()
-            }
-        ];
-        minized = false;
+    socket.on("message", (message, senderID) => {
+        console.log(`this ${message} from ${senderID} is ${friendID}`)
+        if (senderID === friendID) {
+            chat.messages = [
+                ...chat.messages,
+                {
+                    message,
+                    "read": false,
+                    "by_me": false,
+                    "date": Date.now()
+                }
+            ];
+            minized = false;
+        }
     });
 
     async function sendMessage() {
@@ -53,7 +56,7 @@
             return;
         }
 
-        socket.emit('message', message, friendID);
+        socket.emit('message', message, friendID, $user.id);
 
         const response = await fetch("/api/chat/create", {
             method: 'POST',
@@ -104,6 +107,7 @@
 
 <style>
     article {
+        border-radius: 20px 20px 0 0;
         background: white;
         bottom: 0;
         width: 15em;
