@@ -18,7 +18,12 @@
             body: JSON.stringify({query}),
         });
         if (response.ok) {
-            results = await response.json();
+            results = await response.json().then( users => {
+                users.forEach( (user) => {
+                    user.avatar = "/upload/avatars/" + user.avatar;
+                });
+                return users;
+            });
             setTimeout( ()=>{results = []; query = null}, 5000)
         }
         gettingResults = false;

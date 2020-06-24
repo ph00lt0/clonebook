@@ -27,7 +27,7 @@ function addWriteableData(data) {
         firstName: data.firstName,
         lastName: data.lastName,
         status: data.status,
-        avatar: data.avatar,
+        avatar: "/upload/avatars/" + data.avatar,
         username: data.username,
         email: data.email
     };
@@ -46,7 +46,7 @@ function addWriteableData(data) {
                 firstName: data.firstName,
                 lastName: data.lastName,
                 status: data.status,
-                avatar: data.avatar,
+                avatar: "/upload/avatars/" + data.avatar,
                 username: data.username
             },
             message: post.message,
@@ -61,7 +61,7 @@ function addWriteableData(data) {
             firstName: friend.firstName,
             lastName: friend.lastName,
             status: friend.status,
-            avatar: friend.avatar,
+            avatar: "/upload/avatars/" + friend.avatar,
             username: friend.username,
         }];
         // add friend posts to ajAllPostsTempInit
@@ -73,7 +73,7 @@ function addWriteableData(data) {
                     firstName: friend.firstName,
                     lastName: friend.lastName,
                     status: friend.status,
-                    avatar: friend.avatar,
+                    avatar: "/upload/avatars/" + friend.avatar,
                     username: friend.username
                 },
                 message: post.message,
@@ -97,7 +97,7 @@ function addWriteableData(data) {
                 firstName: friend.firstName,
                 lastName: friend.lastName,
                 status: friend.status,
-                avatar: friend.avatar,
+                avatar: "/upload/avatars/" + friend.avatar,
                 username: friend.username
             },
             messages: messages

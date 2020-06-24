@@ -22,8 +22,7 @@
             body: JSON.stringify({inviteID}),
         });
         if (response.ok) {
-            results = await response.json();
-            window.reload();
+            location.reload();
         }
     }
 </script>

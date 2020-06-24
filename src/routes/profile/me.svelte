@@ -9,8 +9,8 @@
        });
     });
 
+    const userID = user.id;
 	async function updateProfile(key, value) {
-        const userID = user.id;
 
         const response = await fetch("/api/profile", {
             method: 'POST',
@@ -25,6 +25,24 @@
             post.liked_by = result.liked_by;
         }
     }
+
+    let files;
+
+    async function updateAvatar() {
+        const formData = new FormData();
+        formData.append('avatar', files[0]);
+
+        const response = await fetch("/api/avatar", {
+            method: 'POST',
+            headers: {
+                "authorization": localStorage.jwt,
+            },
+            body: formData,
+        });
+        if (response.ok) {
+            location.reload();
+        }
+    }
 </script>
 
 <style>
@@ -36,6 +54,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         border-radius: 20px;
+        margin-bottom: 1em;
     }
 
     input {
@@ -64,10 +83,19 @@
 
 <section>
 <h2>Update your information</h2>
-<p>Form automatically saves your input</p>
+<p>Form automatically saves your input.</p>
 <input type="text" value={$user.firstName} on:input={e=> updateProfile('firstName', e.target.value)}/>
 <input type="text" value={$user.lastName} on:input={e=> updateProfile('lastName', e.target.value)}/>
 <input type="email" value={$user.email} on:input={e=> updateProfile('email', e.target.value)}/>
 <input type="text" value={$user.username}  on:input={e=> updateProfile('username', e.target.value)}/>
 <input type="password" value="**********"  on:input={e=> updateProfile('password', e.target.value)}/>
+</section>
+
+<section>
+    <h2>Update your avatar</h2>
+    <p>Set your avatar, so we recognise you.</p>
+    <form method="post" on:submit|preventDefault={updateAvatar}>
+        <input type="file" name="file" bind:files>
+        <button>Set new avatar</button>
+    </form>
 </section>

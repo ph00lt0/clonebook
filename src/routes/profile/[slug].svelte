@@ -8,6 +8,7 @@
 		const data = await res.json();
 
 		if (res.status === 200) {
+		    data.avatar = "/upload/avatars/" + data.avatar;
 			return {user: data};
 		} else {
 			this.error(res.status, data.message);
@@ -32,7 +33,6 @@
             body: JSON.stringify({inviteID}),
         });
         if (response.ok) {
-            results = await response.json();
             window.location = '/';
         }
 	}
