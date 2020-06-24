@@ -23,6 +23,7 @@
         });
         if (response.ok) {
             results = await response.json();
+            window.reload();
         }
     }
 </script>

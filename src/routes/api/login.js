@@ -3,12 +3,15 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 export function post(req, res, next) {
-    if (!req.body) {
-        return res.status(400).end(JSON.stringify({"message": "Bad request"}));
+    if (!req.body.password || !req.body.username) {
+        return res.status(400).end(JSON.stringify({"message": "No credentials provided"}));
     }
     try {
         User.findOne( { "username": req.body['username'] }, function(err, result) {
             if(err){
+                return res.status(401).end(JSON.stringify({"message": "Incorrect credentials"}));
+            }
+            if(!result){
                 return res.status(401).end(JSON.stringify({"message": "Incorrect credentials"}));
             }
             if(req.body['password'] !== result['password']) {

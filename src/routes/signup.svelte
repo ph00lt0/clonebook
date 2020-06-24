@@ -6,6 +6,7 @@
     let email;
     let firstName;
     let lastName;
+    let errors = '';
 
     async function signup() {
         const loginData = {
@@ -23,6 +24,8 @@
         if (response.ok) {
             const result = await response.json();
             window.location = '/login';
+        } else {
+            errors = "Could not sign you up, please complete the form."
         }
     }
 </script>
@@ -33,6 +36,7 @@
 
 <h2>Sign up</h2>
 
+<p>{errors}</p>
 <form on:submit|preventDefault={signup}>
     <input bind:value={firstName} placeholder="First name" type="text">
     <input bind:value={lastName} placeholder="Last name" type="text">

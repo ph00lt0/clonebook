@@ -3,6 +3,7 @@
 
     let username;
     let password;
+    let errors = '';
 
     if (localStorage.jwt) {
         window.location = '/';
@@ -18,10 +19,12 @@
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(loginData),
         });
+        const result = await response.json();
         if (response.ok) {
-            const result = await response.json();
             localStorage.jwt = result.token;
             window.location = '/login';
+        } else {
+            errors = result.message;
         }
     }
 </script>
@@ -31,7 +34,7 @@
 </svelte:head>
 
 <h2>Login</h2>
-
+<p>{errors}</p>
 <form on:submit|preventDefault={login}>
     <input bind:value={username} placeholder="Username" type="text">
     <input bind:value={password} placeholder="Password" type="password">

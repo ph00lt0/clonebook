@@ -33,6 +33,7 @@
         });
         if (response.ok) {
             results = await response.json();
+            window.location = '/';
         }
 	}
 </script>

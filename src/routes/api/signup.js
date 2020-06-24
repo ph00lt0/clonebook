@@ -14,6 +14,6 @@ export async function post(req, res) {
             posts: [],
             friends: [],
             invitations: [],
-        }, (err, result) => err ? res.end(JSON.stringify(err)) : res.end(JSON.stringify("created user"))
+        }, (err, result) => err ? res.status(400).end(JSON.stringify(err)) : res.end(JSON.stringify("created user"))
     );
 }
