@@ -5,8 +5,6 @@
     export let user;
     export let segment;
 
-    console.log($user)
-
     function logout() {
         delete localStorage.jwt;
         window.location = '/login';

@@ -4,7 +4,6 @@
 	import Profile from "../../components/Profile.svelte";
 
     document.querySelectorAll('input').forEach( (input) => {
-        console.log(input)
        input.addEventListener('input', () => {
           updateProfile(input.name, input.value)
        });

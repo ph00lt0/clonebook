@@ -46,14 +46,14 @@ io.on('connection', (socket) => {
                         for (let i = 0; i < friend.friends.length; i++) {
                             if (friend.friends[i].id === user.id) {
                                 friend.friends[i].status = true;
+                                let friendsSocket = Object.keys(clients).find(key => clients[key] === friend.id);
+                                socket.to(friendsSocket).emit('online', userID);
                             }
                         }
                         friend.save(function (err) {
                             if (err) throw err;
                         });
                     });
-                    const friendsSocket = Object.keys(clients).find(key => clients[key] === friends[i].id);
-                    socket.to(friendsSocket).emit('online', userID);
                 }
             }
         });
@@ -82,15 +82,14 @@ io.on('connection', (socket) => {
                         for (let i = 0; i < friend.friends.length; i++) {
                             if (friend.friends[i].id === user.id) {
                                 friend.friends[i].status = false;
+                                const friendsSocket = Object.keys(clients).find(key => clients[key] === friend.id);
+                                socket.to(friendsSocket).emit('offline', user.id);
                             }
                         }
                         friend.save(function (err) {
                             if (err) throw err;
                         });
                     });
-
-                    const friendsSocket = Object.keys(clients).find(key => clients[key] === friends[i].id);
-                    socket.to(friendsSocket).emit('offline', user.id);
                 }
             }
         });

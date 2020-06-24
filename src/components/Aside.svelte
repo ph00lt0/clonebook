@@ -9,7 +9,7 @@
 
     const socket = io();
     setTimeout(function () {
-        socket.emit('register', $user.id);
+        if ($user.id !== 0) socket.emit('register', $user.id);
     }, 1000);
 
     socket.on('disconnect', () => {
