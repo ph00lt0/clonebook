@@ -13,6 +13,7 @@
 <style>
     div {
         position: fixed;
+        align-items: flex-end;
         display: flex;
         bottom: 0;
         right: 0;

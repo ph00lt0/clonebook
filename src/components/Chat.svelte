@@ -84,23 +84,21 @@
         <UserCard user={chat.user}/>
         <button on:click|preventDefault={toggleChat}>_</button>
     </header>
-    <section bind:this={chatSection}>
-        {#if minized === false}
-            <div class="chats">
-                {#each chat.messages as message}
-                    {#if message.by_me}
-                        <div class="message out">{message.message}</div>
-                    {:else}
-                        <div class="message in">{message.message}</div>
-                    {/if}
-                {/each}
-            </div>
-        {/if}
-    </section>
     {#if minized === false}
+        <section bind:this={chatSection}>
+            {#each chat.messages as message}
+                {#if message.by_me}
+                    <div class="message out">{message.message}</div>
+                {:else}
+                    <div class="message in">{message.message}</div>
+                {/if}
+            {/each}
+        </section>
         <form action="" on:submit|preventDefault={sendMessage}>
             <input bind:value={message} type="text" name="message" placeholder="Write a message...">
         </form>
+    {:else}
+        <section bind:this={chatSection} class="hidden"></section>
     {/if}
 </article>
 
@@ -114,15 +112,17 @@
         -moz-box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
         box-shadow: 14px 14px 31px 21px rgba(237, 237, 237, 1);
         margin-right: 2em;
+        min-height: 0;
     }
 
     section {
         margin-top: 3em;
         overflow-y: scroll;
+        height: 25em;
     }
 
-    .chats {
-        height: 25em;
+    .hidden {
+        height: 0;
     }
 
     header {
