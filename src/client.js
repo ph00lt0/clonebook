@@ -110,7 +110,7 @@ function addWriteableData(data) {
             firstName: invite.firstName,
             lastName: invite.lastName,
             username: invite.username,
-            avatar: invite.avatar,
+            avatar: "/upload/avatars/" + invite.avatar,
         }];
     });
 
